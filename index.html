@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تحميل تطبيق YAHIA TV - مشاهدة المباريات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(145deg, #0b0e1a 0%, #1a1f2f 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+        /* ===== CARD ===== */
+        .card {
+            max-width: 520px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 48px;
+            padding: 40px 32px 48px;
+            box-shadow:
+                0 30px 60px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* ===== LOGO ===== */
+        .logo-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            display: inline-block;
+            width: 110px;
+            height: 110px;
+            border-radius: 28px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.04);
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #ffffff, #c0c8e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            font-weight: 600;
+            color: #e50914;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .tagline {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 28px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .tagline strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* ===== FEATURES ===== */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        .feature-badge {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 60px;
+            padding: 8px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: blur(4px);
+        }
+
+        .feature-badge .icon {
+            font-size: 16px;
+        }
+
+        /* ===== DOWNLOAD BUTTON ===== */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            width: 100%;
+            padding: 18px 28px;
+            background: linear-gradient(135deg, #e50914, #b20710);
+            border: none;
+            border-radius: 60px;
+            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 32px rgba(229, 9, 20, 0.35);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent 60%);
+            pointer-events: none;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 44px rgba(229, 9, 20, 0.5);
+        }
+
+        .download-btn:active {
+            transform: scale(0.97);
+        }
+
+        .download-btn .btn-icon {
+            font-size: 30px;
+            line-height: 1;
+        }
+
+        .download-btn .btn-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.2;
+        }
+
+        .download-btn .btn-text .small {
+            font-size: 13px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        /* ===== FILE INFO ===== */
+        .file-info {
+            margin-top: 20px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .file-info span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .file-info .dot {
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-note {
+            margin-top: 28px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.2);
+            letter-spacing: 0.3px;
+        }
+
+        .footer-note a {
+            color: rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-note a:hover {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .card {
+                padding: 32px 20px 36px;
+                border-radius: 32px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .logo-icon {
+                width: 90px;
+                height: 90px;
+                border-radius: 22px;
+            }
+
+            .download-btn {
+                font-size: 18px;
+                padding: 16px 20px;
+            }
+
+            .download-btn .btn-icon {
+                font-size: 24px;
+            }
+
+            .features {
+                gap: 8px;
+            }
+
+            .feature-badge {
+                font-size: 12px;
+                padding: 6px 14px;
+            }
+
+            .file-info {
+                font-size: 12px;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .card {
+                padding: 24px 16px 28px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+            }
+
+            .download-btn {
+                font-size: 16px;
+                padding: 14px 16px;
+                gap: 10px;
+            }
+
+            .download-btn .btn-icon {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+
+        <!-- LOGO -->
+        <div class="logo-wrapper">
+            <img src="1000152822.jpg" alt="YAHIA TV Logo" class="logo-icon" />
+        </div>
+
+        <!-- TITLE -->
+        <h1>YAHIA TV</h1>
+        <div class="subtitle">📺 لمشاهدة المباريات بجودة عالية</div>
+        <p class="tagline">
+            حمل التطبيق الآن واستمتع بمشاهدة <strong>المباريات الحصرية</strong> والبث المباشر
+            بأفضل جودة على هاتفك الذكي.
+        </p>
+
+        <!-- FEATURES -->
+        <div class="features">
+            <span class="feature-badge"><span class="icon">⚡</span> بث مباشر</span>
+            <span class="feature-badge"><span class="icon">📡</span> قنوات رياضية</span>
+            <span class="feature-badge"><span class="icon">🎯</span> جودة HD</span>
+            <span class="feature-badge"><span class="icon">📱</span> واجهة سهلة</span>
+        </div>
+
+        <!-- DOWNLOAD BUTTON -->
+        <a href="https://www.mediafire.com/file/jr3mson7bby8a3y/YAHIA_TV.apk/file"
+        class="download-btn"
+        target="_blank"
+        rel="noopener noreferrer">
+        <span class="btn-icon">⬇️</span>
+        <span class="btn-text">
+            تحميل التطبيق
+            <span class="small">APK - 27.93 MB</span>
+        </span>
+    </a>
+
+    <!-- FILE INFO -->
+    <div class="file-info">
+        <span>📦 YAHIA_TV.apk</span>
+        <span class="dot"></span>
+        <span>🔄 الإصدار 2.1.0</span>
+        <span class="dot"></span>
+        <span>📱 Android 5.0+</span>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-note">
+        تم التحديث في 3 يوليو 2026 &bull;
+        <a href="#" onclick="event.preventDefault(); alert('رابط التحميل: https://www.mediafire.com/file/jr3mson7bby8a3y/YAHIA_TV.apk/file');">رابط بديل</a>
+    </div>
+
+</div>
+
+</body>
+</html>
